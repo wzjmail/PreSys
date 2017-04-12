@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="Order2">
+
+	<select id="list" parameterType="Order2" resultType="Order2">
+		select od.* ,od.utime,prov.name pname,provid,goodsid,goods.name
+		gname from zj_order2log od left join zj_provider prov on od.provid=prov.id
+		left join zj_goods goods on od.goodsid=goods.id where 1=1
+
+		<if test="search!=null and search!=''">    <!-- test= 用于检测一个字符串是否匹配某个模式 -->
+			and (prov.name like CONCAT(CONCAT('%', #{search}), '%') or
+			goods.name
+			like CONCAT(CONCAT('%', #{search}), '%') )
+		</if>
+		
+	
+
+	</select>
+
+
+	<select id="listt" parameterType="Goods" resultType="Goods">
+		select
+		id,price,NAME gname from zj_goods where name=#{gname}
+	</select>
+
+	<select id="lists" parameterType="Prov" resultType="Prov">
+		select * from
+		zj_provider where name=#{pname}
+	</select>
+
+
+
+	<!-- 删除一条by Id -->
+	<delete id="delete" parameterType="Order2">
+		delete from zj_order2log where
+		order2id=#{order2id}
+	</delete>
+
+
+
+	
+
+	<insert id="insertOrder2" parameterType="Order2">
+		insert into zj_order2log
+		(order2id,goodsid,provid,time,state,oprice,nprice,amount,type) values
+		(#{order2id},#{goodsid},#{provid},#{time},#{state},#{oprice},#{nprice},#{amount},#{type});
+
+	</insert>
+
+	
+
+	<!-- 获取信息 -->
+	<select id="findd" parameterType="Order2" resultType="Order2">
+		SELECT od.*,prov.name pname,goods.name gname FROM zj_order2log od LEFT
+		JOIN zj_provider prov ON od.provid=prov.id LEFT JOIN zj_goods goods ON
+		od.goodsid=goods.id
+		where 1=1
+		<if test="order2id!=null and order2id!='' ">
+			and order2id=#{id}
+		</if>
+
+
+	</select>
+	<select id="find" parameterType="Order2" resultType="Order2">
+		SELECT
+		od.*,prov.name pname,goods.name gname ,goodsid,provid FROM zj_order2log
+		od LEFT JOIN zj_provider prov ON od.provid=prov.id LEFT JOIN zj_goods
+		goods ON od.goodsid=goods.id
+		where order2id=#{id}
+
+
+	</select>
+
+
+
+	<select id="goodslist" parameterType="Goods" resultType="Goods">
+		select
+		name gname , price, id from zj_goods
+
+	</select>
+	<select id="provlist" parameterType="Prov" resultType="Prov">
+		select name
+		pname ,id from zj_provider
+
+	</select>
+
+
+
+	<!-- 获取全部用户表 -->
+	<select id="allorder2list" parameterType="Order2" resultType="Order2">
+		select od.*,prov.name pname,provid,goods.name gname,goodsid from
+		zj_order2log od left join zj_provider prov on od.provid=prov.id left join
+		zj_goods goods on od.goodsid=goods.id
+
+	</select>
+
+	
+
+	<!-- 修改用户 -->
+	<update id="update" parameterType="Order2">
+		update zj_order2log set order2id=#{id}
+
+		<if test="state!=null and state!='' ">
+			,state=#{state}
+		</if>
+		<if test="nprice>=0 ">
+			,nprice=#{nprice}
+		</if>
+		<if test="oprice!=null and oprice!='' ">
+			,oprice=#{oprice}
+		</if>
+		<if test="amount!=null and amount!='' ">
+			,amount=#{amount}
+		</if>
+		<if test="type>=0 ">
+			,type=#{type}
+		</if>
+		<if test="time!=null and time!='' ">
+			,utime=#{time}
+		</if>
+
+		where order2id=#{id}
+	</update>
+	<!-- 修改商品库存 add -->
+	<update id="update1" parameterType="Goods">
+
+		update zj_goods set
+		oamount=1             <!-- oamount类似于where1=1的作用，防止语句错误 -->
+		<if test="state==1">
+			<if test="type==1">
+
+				,storage=storage-#{amount}
+			</if>
+			<if test="type==0">
+				,storage=storage+#{amount}
+			</if>
+
+		</if>
+
+		where id=#{goodsid}
+		<!-- 在<when test=""></when>标签中接收参数的时候test中去掉#{} 直接写上参数的名称就可以了<if test=""></if>也是一样！！！！ 
+			而不是test="{type}==1" -->
+
+
+
+	</update>
+	<!-- 修改商品库存update -->
+	<update id="update2" parameterType="Goods">
+
+		update zj_goods set
+		oamount=1            
+		<if test="state==1">
+			<if test="type==1">
+
+				,storage=storage-#{amount}
+			</if>
+			<if test="type==0">
+				,storage=storage+#{amount}
+			</if>
+
+		</if>
+
+		where id=#{goodsid}
+	</update>
+
+</mapper>

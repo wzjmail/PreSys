@@ -1,6 +1,6 @@
-package com.wzj.ms.prov;
+package com.wzj.ms.order2;
 
-public class Prov extends Common
+public class Goods extends Common
 {
 	
 	  private int price;
@@ -14,28 +14,8 @@ public class Prov extends Common
 	private String password;
 	private int role;
 	private String session;
-	private String cname;private String pname;
-	  public String getCname() {
-		return cname;
-	}
-
-
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
-
-
-	public int getNumAll() {
-		return numAll;
-	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public int getPrice() {
+	
+	  public int getPrice() {
 		return price;
 	}
 
@@ -137,19 +117,9 @@ public class Prov extends Common
 
 
 	public String toString() {
-	    return "Cus [session=" + this.session + ", id=" + this.getId() + ", cname=" + this.getCname()+ 
-	      ", tel=" +this.getTel() + ", type=" + this.getType()+  "]";
+	    return "User [session=" + this.session + ", password=" + this.password + ", role=" + this.role + 
+	      ", getSign()=" + getSign() + "]";
 	  }
-
-
-	public String getPname() {
-		return pname;
-	}
-
-
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
 	
 
 	

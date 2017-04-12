@@ -66,7 +66,7 @@
 							</div>
 							<div style="padding-top: 13px;">
 								<select id="select">
-								<option><-请选择-></option>
+									<option><-请选择-></option>
 									<c:forEach items="${list2}" var="li">
 										<option>${li.gname}</option>
 									</c:forEach>
@@ -76,12 +76,12 @@
 						</div>
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;" >
+							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">商品ID:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" readonly="readonly" 
-									name="goodsid" class="goodsid" />
+								<input type="text" readonly="readonly" name="goodsid"
+									class="goodsid" />
 
 							</div>
 						</div>
@@ -93,7 +93,7 @@
 							</div>
 							<div style="padding-top: 13px;">
 								<select id="select1">
-								<option><-请选择-></option>
+									<option><-请选择-></option>
 									<c:forEach items="${list1}" var="li">
 
 										<option>${li.cname}</option>
@@ -107,8 +107,8 @@
 								<span class="sright"><font size="3">单位ID:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" " readonly="readonly"
-									name="cusid" class="cusid" />
+								<input type="text" " readonly="readonly" name="cusid"
+									class="cusid" />
 
 							</div>
 						</div>
@@ -119,8 +119,8 @@
 								<span class="sright"><font size="3">标价:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input onfocus="this.type='text'" placeholder="标价"  readonly="readonly" name="oprice"
-									class=" col-xs-5 oprice" />
+								<input onfocus="this.type='text'" placeholder="标价"
+									readonly="readonly" name="oprice" class=" col-xs-5 oprice" />
 
 								<!--<div id="succ" style="display: none">
 									<font color="green">可用</font>
@@ -166,17 +166,32 @@
 							</div>
 							<div style="padding-top: 13px;">
 								<select id="select2" class="state" name="state">
-								<option value="-1"> <-请选择-></option>
+									<option value="-1"><-请选择-></option>
 									<option value="1">已完成</option>
 									<option value="0">未完成</option>
 
 								</select>
 							</div>
 						</div>
-
-
-
+						
 						<div class="row" style="height: 50px;">
+							
+							<div style="padding-top: 13px;">
+								<input type="text" " readonly="readonly" name="type" style="display: none" value=1
+									class="type" />
+
+							</div>
+						</div>
+						<div class="row" style="height: 50px;">
+							
+							<div style="padding-top: 13px;">
+								<input type="text" " readonly="readonly" name="custype"  style="display: none"
+									class="custype" />
+
+							</div>
+						</div>
+						
+						<!-- <div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">订单类型:</font></span>
@@ -189,7 +204,9 @@
 
 								</select>
 							</div>
-						</div>
+						</div> -->
+
+
 
 						<%--<input class="hide" name="sign" value="${us.sign}" /> --%>>
 						<div class="row" style="height: 50px">
@@ -311,8 +328,7 @@
 				});
 			}
 		});
-
-
+	
 		$("#select1").change(function() {
 
 			var cname = $(this).val();
@@ -331,6 +347,23 @@
 			}
 		});
 
+		$("#select1").change(function() {
+
+			var cname = $(this).val();
+			if (cname != "") {
+
+				$.post("orderM/ajax4.action", {
+					"cname" : cname
+				}, function(data4, status) {
+
+					if (status == "success") {
+
+						$(".custype").val(data4);
+
+					}
+				});
+			}
+		});
 		$("#select2").change(function() {
 
 			var state = $(this).val();

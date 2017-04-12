@@ -1,6 +1,6 @@
-package com.wzj.ms.prov;
+package com.wzj.ms.order2;
 
-public class Prov extends Common
+public class Order extends Common
 {
 	
 	  private int price;
@@ -12,16 +12,21 @@ public class Prov extends Common
 	private int numAll;
 	private int number;
 	private String password;
-	private int role;
+	private int role;	private int ty;
 	private String session;
-	private String cname;private String pname;
-	  public String getCname() {
-		return cname;
+	
+	  public int getPrice() {
+		return price;
 	}
 
 
-	public void setCname(String cname) {
-		this.cname = cname;
+	public int getTy() {
+		return ty;
+	}
+
+
+	public void setTy(int ty) {
+		this.ty = ty;
 	}
 
 
@@ -32,11 +37,6 @@ public class Prov extends Common
 
 	public String getPassword() {
 		return password;
-	}
-
-
-	public int getPrice() {
-		return price;
 	}
 
 
@@ -134,22 +134,12 @@ public class Prov extends Common
 	public void setSession(String session) {
 	    this.session = session;
 	  }
-
+	
 
 	public String toString() {
-	    return "Cus [session=" + this.session + ", id=" + this.getId() + ", cname=" + this.getCname()+ 
-	      ", tel=" +this.getTel() + ", type=" + this.getType()+  "]";
+	    return "Order [" + "orderid=" + this.getOrderid() + "gname=" + this.getGname() +"cname=" + this.getCname() +", goodsid=" + getGoodsid() + 
+	      ", cusid=" + getCusid() +  ", time=" + getTime() + ", state=" + getState() + ", oprice=" + getOprice() + ", nprice=" + getNprice()  + ", amount=" + getAmount()  + ", sign=" + getSign()  + ", type=" + getType() + ", cname=" + getCname() + ",gname=" + getGname()+"]                ";
 	  }
-
-
-	public String getPname() {
-		return pname;
-	}
-
-
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
 	
 
 	

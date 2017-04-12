@@ -11,7 +11,7 @@ public class Order extends Common
 	private int num;
 	private int numAll;
 	private int number;
-	private String password;
+	private String password;  private String order2id;
 	private int role;	private int ty;
 	private String session;
 	
@@ -140,6 +140,16 @@ public class Order extends Common
 	    return "Order [" + "orderid=" + this.getOrderid() + "gname=" + this.getGname() +"cname=" + this.getCname() +", goodsid=" + getGoodsid() + 
 	      ", cusid=" + getCusid() +  ", time=" + getTime() + ", state=" + getState() + ", oprice=" + getOprice() + ", nprice=" + getNprice()  + ", amount=" + getAmount()  + ", sign=" + getSign()  + ", type=" + getType() + ", cname=" + getCname() + ",gname=" + getGname()+"]                ";
 	  }
+
+
+	public String getOrder2id() {
+		return order2id;
+	}
+
+
+	public void setOrder2id(String order2id) {
+		this.order2id = order2id;
+	}
 	
 
 	

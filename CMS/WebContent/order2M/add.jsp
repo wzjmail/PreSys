@@ -11,7 +11,7 @@
 %>
 <base href="<%=path%>" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>补充订单信息</title>
+<title>增加用户</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,7 +24,6 @@
 <link rel="stylesheet" href="assets/css/daterangepicker.css" />
 <link rel="stylesheet" href="assets/css/colorpicker.css" />
 
-
 <!-- fonts -->
 <!-- ace styles -->
 
@@ -34,8 +33,8 @@
 
 
 <!-- ace settings handler -->
-<script src="assets/js/ace-extra.min.js"></script>
 <script src="assets/js/jsmd5.js"></script>
+<script src="assets/js/ace-extra.min.js"></script>
 <style type="text/css">
 .sright {
 	float: right;
@@ -48,7 +47,7 @@
 		<div class="page-content">
 			<div class="page-header">
 				<h1>
-					修改 <small> <i class="icon-double-angle-right"></i> 订单信息
+					添加 <small> <i class="icon-double-angle-right"></i> 订单信息
 					</small>
 				</h1>
 			</div>
@@ -57,119 +56,116 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<s:form action="orderM/update.action" class="form-horizontal"
-						method="post" id="form-list" commandName="listt">
-						<input type="hidden" name="id" class="id"
-							value="${listt.orderid}" />
-						<input type="hidden" name="utime" class="utime"
-							value="${listt.utime}" />
+					<s:form action="order2M/add.action" class="form-horizontal"
+						method="post" id="form-list" commandName="order2">
+						<!-- style="display:none" -->
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">商品名称:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.gname}" name="gname"
-									readonly="readonly" class=" col-xs-5 gname" />
-								<div id="undiv" style="display: none">
-									<font color="red">不能为空</font>
-								</div>
+								<select id="select">
+									<option><-请选择-></option>
+									<c:forEach items="${list2}" var="li">
+										<option>${li.gname}</option>
+									</c:forEach>
+								</select>
+							</div>
+
+						</div>
+						<div class="row" style="height: 50px;">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-2" style="padding-top: 13px;">
+								<span class="sright"><font size="3">商品ID:</font></span>
+							</div>
+							<div style="padding-top: 13px;">
+								<input type="text" readonly="readonly" name="goodsid"
+									class="goodsid" />
+
 							</div>
 						</div>
-						<input type="hidden" name="goodsid" class="goodsid"
-							value="${listt.goodsid}" />
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">单位名称:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.cname}" name="cname"
-									readonly="readonly" class=" col-xs-5 cname" />
-								<div id="undiv" style="display: none">
-									<font color="red">不能为空</font>
-								</div>
+								<select id="select1">
+									<option><-请选择-></option>
+									<c:forEach items="${list1}" var="li">
+
+										<option>${li.pname}</option>
+									</c:forEach>
+								</select>
 							</div>
 						</div>
+						<div class="row" style="height: 50px;">
+							<div class="col-xs-2"></div>
+							<div class="col-xs-2" style="padding-top: 13px;">
+								<span class="sright"><font size="3">单位ID:</font></span>
+							</div>
+							<div style="padding-top: 13px;">
+								<input type="text" " readonly="readonly" name="provid"
+									class="provid" />
+
+							</div>
+						</div>
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">标价:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.oprice}" name="oprice"
-									readonly="readonly" class=" col-xs-5 oprice" />
-								<div id="undiv" style="display: none">
-									<font color="red">不能为空</font>
-								</div>
+								<input onfocus="this.type='text'" placeholder="标价"
+									readonly="readonly" name="oprice" class=" col-xs-5 oprice" />
+
+								<!--<div id="succ" style="display: none">
+									<font color="green">可用</font>
+								</div>  -->
 							</div>
 						</div>
+
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">实际价格:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.nprice}" name="nprice"
-									class=" col-xs-5 nprice" />
-								<div id="undiv" style="display: none">
+								<input onfocus="this.type='text'" placeholder="实际价格"
+									name="nprice" class=" col-xs-5 nprice" />
+								<div id="undiv1" style="display: none">
 									<font color="red">不能为空</font>
 								</div>
+
 							</div>
 						</div>
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">数量:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.amount}" name="amount"
+								<input onfocus="this.type='text'" placeholder="数量" name="amount"
 									class=" col-xs-5 amount" />
 								<div id="undiv" style="display: none">
 									<font color="red">不能为空</font>
 								</div>
+
 							</div>
 						</div>
-						<!--  	<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">订单状态:</font></span>
-							</div>
-						
-							<div style="padding-top: 13px;">
-								<select  id="select2" name="state" class="col-xs-10 col-sm-5 state">
-										<option value="-1" selected="selected"> <-请选择-></option>
-									<option value="0"
-										<c:if test="${listt.state eq 0}">selected="selected"</c:if>>未完成</option>
-									<option value="1"
-										<c:if test="${listt.state eq 1}">selected="selected"</c:if>>已完成</option>
-								</select>
-							</div>
-						</div>
-						<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">订单类型:</font></span>
-							</div>
-							<div style="padding-top: 13px;">
-								<select name="type" class="col-xs-10 col-sm-5 type">
-									<option value="-1"> <-请选择-></option>
-									<option value="0"
-										<c:if test="${listt.type eq 0}">selected="selected"</c:if>>进货单</option>
-									<option value="1"
-										<c:if test="${listt.type eq 1}">selected="selected"</c:if>>出货单</option>
-								</select>
-							</div>
-						</div>
-						-->
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">订单状态:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<select class="state" id="select2" name="state">
-									<!-- value="${listt.state}" -->
+								<select id="select2" class="state" name="state">
 									<option value="-1"><-请选择-></option>
 									<option value="1">已完成</option>
 									<option value="0">未完成</option>
@@ -177,14 +173,21 @@
 								</select>
 							</div>
 						</div>
-
-						<!--<div class="row" style="height: 50px;">
+						
+						
+						<td class="center"><label> <input type="checkbox"
+								class="ace" /> <span class="lbl"></span>
+						</label> <input class="type" style="display: none" value=0 />
+						</td>
+						
+						
+						<!-- <div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">订单类型:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<select class="type" name="type" >
+								<select  name="type"  class="type">
 								<option value="-1"> <-请选择-></option>
 									<option value="1">出货单</option>
 									<option value="0">进货单</option>
@@ -195,22 +198,9 @@
 
 
 
-
-
-
-
-
-
+						<%--<input class="hide" name="sign" value="${us.sign}" /> --%>>
 						<div class="row" style="height: 50px">
-
-							<!--  	-->
-
-							<div class="col-xs-2">
-								<input class="hide rol" value="${loginU.role }" />
-							</div>
-
-
-
+							<div class="col-xs-2"></div>
 							<div class="col-xs-6" style="padding-top: 7px; margin-left: 20%">
 
 								<button class="btn btn-info submit" type="button">
@@ -229,6 +219,7 @@
 				<!-- /.page-content -->
 			</div>
 			<!-- /.main-content -->
+
 		</div>
 		<!-- /.main-container-inner -->
 
@@ -290,36 +281,109 @@
 	<script src="assets/js/ace.min.js"></script>
 
 	<!-- inline scripts related to this page -->
+
 	<script type="text/javascript">
-		jQuery(function($) {
-			$("#select2").change(function() {
+		$("#select").change(function() {
 
-				var state = $(this).val();
-				if (state == 1) {
+			var gname = $(this).val(); 
+			
+			if (gname != "") {
+
+				$.post("order2M/ajax1.action", {
+					"gname" : gname
+				}, function(data, status) {
+					if (status == "success") {
+
+						$(".goodsid").val(data);
+
+					}
+
+				});
+			}
+		});
+		$("#select").change(function() {
+
+			var gname = $(this).val();
+			if (gname != "") {
+
+				$.post("order2M/ajax3.action", {
+					"gname" : gname
+				}, function(data3, status) {
+					if (status == "success") {
+
+						$(".oprice").val(data3);
+
+					}
+
+				});
+			}
+		});
+
+
+		$("#select1").change(function() {
+
+			var pname = $(this).val();
+			if (pname != "") {
+
+				$.post("order2M/ajax2.action", {
+					"pname" : pname
+				}, function(data2, status) {
+
+					if (status == "success") {
+
+						$(".provid").val(data2);
+
+					}
+				});
+			}
+		});
+
+		$("#select2").change(function() {
+
+			var state = $(this).val();
+			if (state==1) {
 					alert("订单已完成，提交后不能对订单进行修改和删除操作！")
-
-				}
-			});
-
-			$(".submit").click(function() {
-				var state = $(".state").val();
-				var type = $(".type").val();
-
-				if (state == -1) {
-					alert("请选择订单状态");
-
-				} else if (type == -1) {
-					alert("请选择订单类型")
-				} else {
-					alert("确定修改么");
-					$("#form-list").submit();
-				}
-
-			});
-
-		})
-	
+				
+			}
+		});
 		
+
+		$(".nprice").off("blur").on("blur", function() {
+			var nprice = $(this).val();
+			if (nprice == "") {
+				$("#undiv1").show();
+			} else {
+				$("#undiv1").hide();
+			}
+		});
+		$(".oprice").off("blur").on("blur", function() {
+			var oprice = $(this).val();
+			if (oprice == "") {
+				$("#undiv").show();
+			} else {
+				$("#undiv").hide();
+			}
+		});
+  
+		
+		$(".submit").click(function() {
+			var state = $(".state").val();
+			var type = $(".type").val();
+			/*alert(state);
+			alert(type);*/
+			if (state ==-1) {
+				alert("请选择订单状态");
+
+			} 
+			else if(type ==-1) {
+				alert("请选择订单类型")
+			} else {
+				
+				$("#form-list").submit();
+			}
+
+		});
+		;
 	</script>
 </body>
 </html>

@@ -244,20 +244,17 @@
 
 							<c:if test="${loginU.role eq 0 }">
 								<li class="menu-list"><a
-									href="cusM/list.action?belongs=-1&restatus=-1"
+									href="orderM/list.action?belongs=-1&restatus=-1"
 									target="rightJsp"> <span class="menu-list"> </span>
 								</a></li>
 							</c:if>
-									<li class="menu-list"><a
-								href="orderM/list.action?type=-1" target="rightJsp">
-									<span class="menu-list">全部订单 </span>
-							</a></li>
+									
 							<li class="menu-list"><a
 								href="orderM/list.action?type=-1"  target="rightJsp">
 									<span class="menu-list">出货单 </span>
 							</a></li>
 							<li class="menu-list"><a
-								href="orderM/list.action?type=-1"  target="rightJsp">
+								href="order2M/list.action"  target="rightJsp">
 									<span class="menu-list">进货单</span>
 							</a></li>
 							<%--<c:if test="${loginU.role eq 0 || loginU.role eq 1 }">       

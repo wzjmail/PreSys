@@ -57,10 +57,9 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<s:form action="orderM/update.action" class="form-horizontal"
+					<s:form action="order2M/update.action" class="form-horizontal"
 						method="post" id="form-list" commandName="listt">
-						<input type="hidden" name="id" class="id"
-							value="${listt.orderid}" />
+						<input type="hidden" name="id" class="id" value="${listt.order2id}" />
 						<input type="hidden" name="utime" class="utime"
 							value="${listt.utime}" />
 						<div class="row" style="height: 50px;">
@@ -84,7 +83,7 @@
 								<span class="sright"><font size="3">单位名称:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.cname}" name="cname"
+								<input type="text" value="${listt.pname}" name="pname"
 									readonly="readonly" class=" col-xs-5 cname" />
 								<div id="undiv" style="display: none">
 									<font color="red">不能为空</font>
@@ -178,7 +177,7 @@
 							</div>
 						</div>
 
-						<!--<div class="row" style="height: 50px;">
+						<!-- <div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
 								<span class="sright"><font size="3">订单类型:</font></span>
@@ -192,7 +191,6 @@
 								</select>
 							</div>
 						</div> -->
-
 
 
 
@@ -318,8 +316,6 @@
 			});
 
 		})
-	
-		
 	</script>
 </body>
 </html>

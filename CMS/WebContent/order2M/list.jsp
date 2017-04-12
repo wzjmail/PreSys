@@ -11,7 +11,7 @@
 %>
 <base href="<%=path%>" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>OrderList</title>
+<title>Order2List</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -29,10 +29,10 @@
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12">
-					<div class="table-header">订单列表（出货单）</div>
+					<div class="table-header">订单列表(进货单)</div>
 					<div class="table-responsive">
-						<s:form action="orderM/list.action" method="post" id="form-list"
-							commandName="order">
+						<s:form action="order2M/list.action" method="post" id="form-list"
+							commandName="order2">
 							<table id="sample-table-1"
 								class="table table-striped table-bordered table-hover">
 								<thead>
@@ -47,7 +47,7 @@
 												<button class="btn btn-primary search">
 													<i class="icon-cloud-upload bigger-110"></i> 查询
 												</button>
-												&nbsp; <a href="orderM/addOrder.action"><button
+												&nbsp; <a href="order2M/addOrder2.action"><button
 														type="button" class="btn btn-success radius-5">
 														<i class="icon-save bigger-110"></i>增加
 													</button></a>
@@ -62,7 +62,7 @@
 												class="ace"> <span class="lbl"></span>
 										</label></th>
 										<th class="center">商品名称</th>
-										<th class="center">顾客名称</th>
+										<th class="center">供货商名称</th>
 										<th class="center">标价</th>
 										<th class="center">实际价格</th>
 										<th class="center">商品数量</th>
@@ -80,10 +80,10 @@
 											<td class="center"><label> <input
 													type="checkbox" class="ace" /> <span class="lbl"></span>
 											</label> <input class="id" style="display: none"
-												value="${li.orderid}" /></td>
+												value="${li.order2id}" /></td>
 
 											<td class="center goodsname">${li.gname}</td>
-											<td class="center cusname">${li.cname}</td>
+											<td class="center provname">${li.pname}</td>
 											<td class="center oprice">${li.oprice}</td>
 											<td class="center nprice">${li.nprice}</td>
 											<td class="center amount">${li.amount}</td>
@@ -118,7 +118,7 @@
 												
 														<c:if test="${li.state eq 0}">
 														<a class="green updateUser"
-															href="orderM/query.action?id=${li.orderid}"> <i
+															href="order2M/query.action?id=${li.order2id}"> <i
 															class="icon-pencil bigger-130"></i>
 														</a>
 														<a class="red delete"> <i
@@ -139,7 +139,7 @@
 															type="checkbox" class="ace" /> <span class="lbl"></span>
 													</label> <input class="id" type="hidden" value="${li.id}" /></td>
 													<td class="center name">${li.name}</td>
-													<td class="center ordername">${li.ordername}</td>
+													<td class="center order2name">${li.order2name}</td>
 													<td class="center"><c:if test="${li.role eq 0}">
 															<span
 																class="label label-success arrowed-in-right arrowed">部门员工</span>
@@ -154,7 +154,7 @@
 													<td class="center">
 														<div
 															class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-															<a class="green updateOrder"
+															<a class="green updateorder2"
 																href="orderM/query.action?id=${li.id}"> <i
 																class="icon-pencil bigger-130"></i>
 															</a>
@@ -218,8 +218,8 @@
 				var obj = $(this).parent().parent().parent();
 				var id = obj.find(".id").val();
 				if (confirm("确定删除吗？")) {
-					$.post("orderM/delete.action", {
-						"orderid" : id
+					$.post("order2M/delete.action", {
+						"order2id" : id
 					}, function(data, success) {
 
 						$(obj).hide();

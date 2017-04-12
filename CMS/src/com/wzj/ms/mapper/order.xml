@@ -7,7 +7,7 @@
 	<select id="list" parameterType="Order" resultType="Order">
 		select od.* ,od.utime,cus.name cname,cusid,goodsid,goods.name
 		gname from zj_orderlog od left join zj_customer cus on od.cusid=cus.id
-		left join zj_goods goods on od.goodsid=goods.id left join zj_provider prov on od.provid=prov.id
+		left join zj_goods goods on od.goodsid=goods.id 
 		where 1=1
 
 		<if test="search!=null and search!=''">    <!-- test= 用于检测一个字符串是否匹配某个模式 -->
@@ -15,12 +15,12 @@
 			goods.name
 			like CONCAT(CONCAT('%', #{search}), '%') )
 		</if>
-		<if test="search!=null and search!=''">    <!-- test= 用于检测一个字符串是否匹配某个模式 -->
+		
+		<!--<if test="search!=null and search!=''">     test= 用于检测一个字符串是否匹配某个模式
 			and (prov.name like CONCAT(CONCAT('%', #{search}), '%') or
 			prov.name
 			like CONCAT(CONCAT('%', #{search}), '%') )
-		</if>
-		<!-- -->
+		</if> -->
 		
 
 

@@ -3,8 +3,10 @@ package com.wzj.ms.action;
 import com.wzj.ms.cus.Cus;
 import com.wzj.ms.goods.Goods;
 import com.wzj.ms.order.Order;
+import com.wzj.ms.order2.Order2;
 import com.wzj.ms.pojo.Pages;
 import com.wzj.ms.pojo.User;
+import com.wzj.ms.prov.Prov;
 import com.wzj.ms.utils.Utils;
 
 import java.util.List;
@@ -15,80 +17,80 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping({ "/orderM" })
+@RequestMapping({ "/order2M" })
 
-public class OrderAction extends CommonAction {
+public class Order2Action extends CommonAction {
 
 	@RequestMapping({ "/query" }) // 在进行修改前查出该商品的基本信息，这样就可以减少一部分用户手动输入了
 	@ResponseBody
-	public ModelAndView query(Order order, HttpServletRequest request) {
+	public ModelAndView query(Order2 order2, HttpServletRequest request) {
 
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
 
 		System.out.println("**********************");
-		this.map.put("listt", this.service.find(order));
-		System.out.println(this.service.find(order));
+		this.map.put("listt", this.service.find(order2));
+		System.out.println(this.service.find(order2));
 
-		return new ModelAndView("orderM/update", this.map);
+		return new ModelAndView("order2M/update", this.map);
 	}
 
 	
 
 	@RequestMapping({ "/list" })
 	@ResponseBody
-	public ModelAndView list(Order order, Pages page, HttpServletRequest request) {
-		if (order == null) {
-			order = new Order();
+	public ModelAndView list(Order2 order2, Pages page, HttpServletRequest request) {
+		if (order2 == null) {
+			order2 = new Order2();
 		}
-		this.map = this.service.list(order, page);
-		this.map.put("us1", order);
-		return new ModelAndView("orderM/list", this.map);
+		this.map = this.service.list(order2, page);
+		this.map.put("us1", order2);
+		return new ModelAndView("order2M/list", this.map);
 	}
 	
-	@RequestMapping({ "/addOrder" })
+	@RequestMapping({ "/addOrder2" })
 	@ResponseBody
-	public ModelAndView addOrder(Order order, HttpServletRequest request) {
-		this.map.put("list2", this.service.find(order,"goodslist"));
-		this.map.put("list1", this.service.find(order,"cuslist"));
-		System.err.println( this.service.find(order,"cuslist"));
-		System.err.println( this.service.find(order,"goodslist"));
+	public ModelAndView addOrder2(Order2 order2, HttpServletRequest request) {
+		this.map.put("list2", this.service.find(order2,"goodslist"));
+		this.map.put("list1", this.service.find(order2,"provlist"));
+		System.err.println( this.service.find(order2,"provlist"));
+		System.err.println( this.service.find(order2,"goodslist"));
 
-		return new ModelAndView("orderM/add", this.map);
+		return new ModelAndView("order2M/add", this.map);
 
 	}
 
 	@RequestMapping({ "/add" })
 	@ResponseBody
-	public ModelAndView add(Order order, Pages page, HttpServletRequest request) {
+	public ModelAndView add(Order2 order2, Pages page, HttpServletRequest request) {
 
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
-		order.setOrderid(Utils.uuID());
-		order.setTime(Utils.DateTime("yyyy-MM-dd HH:mm"));
-		this.service.insert(order, "insertOrder");
+		order2.setOrder2id(Utils.uuID());
+		order2.setTime(Utils.DateTime("yyyy-MM-dd HH:mm"));
+		this.service.insert(order2, "insertOrder2");
 		
-		this.service.update(order,"update1");
+		this.service.update(order2,"update1");
 		
 		System.err.println( "wojiazheudkjfksl");
-		return list(order, page, request);
+		return list(order2, page, request);
 	}
 
 	@RequestMapping({ "/update" })
 	@ResponseBody
-	public ModelAndView update(Order order, Pages page, HttpServletRequest request) {
+	public ModelAndView update(Order2 order2, Pages page, HttpServletRequest request) {
 
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 			System.out.print("");
 		}
-		//this.service.update(order,"update2");
-		this.service.update(order,"update2");
-		order.setTime(Utils.DateTime("yyyy-MM-dd HH:mm"));
-		this.service.update(order);
-		return list(order, page, request);
+		//this.service.update(order2,"update2");
+		this.service.update(order2,"update2");
+		order2.setTime(Utils.DateTime("yyyy-MM-dd HH:mm"));
+		this.service.update(order2);
+		return list(order2, page, request);
 	}
 
 	// 另一种不需要页面跳转的修改方式，修改完成后，直接alert（“成功”）
@@ -106,13 +108,13 @@ public class OrderAction extends CommonAction {
 	 */
 	@RequestMapping({ "/ajax1" })  //实现增加时，当选中名字后，可以自动对应ID1
 	@ResponseBody
-	public Object ajax1(Order order, HttpServletRequest request) {
+	public Object ajax1(Order2 order2, HttpServletRequest request) {
 		String data = "";
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
 		
-		List list = (List) this.service.find(order, "listt");
+		List list = (List) this.service.find(order2, "listt");
 		Goods goods = (Goods) list.get(0);
 		data = goods.getId();
 
@@ -122,52 +124,38 @@ public class OrderAction extends CommonAction {
 
 	@RequestMapping({ "/ajax2" })//实现增加时，当选中名字后，可以自动对应ID2
 	@ResponseBody
-	public Object ajax2(Order order, HttpServletRequest request) {
+	public Object ajax2(Order2 order2, HttpServletRequest request) {
 		String data2 = "";
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
-		List list = (List) this.service.find(order, "lists");
-		Cus cus = (Cus) list.get(0);
-		data2 = cus.getId();
+		List list = (List) this.service.find(order2, "lists");
+		Prov prov = (Prov) list.get(0);
+		data2 = prov.getId();
 		System.err.print(data2);
 		return Integer.valueOf(data2);
-	}
-	@RequestMapping({ "/ajax4" })//实现增加时，当选中名字后，可以自动对应ID2
-	@ResponseBody
-	public Object ajax4(Order order, HttpServletRequest request) {
-		Integer data4 = 0;
-		if (order == null) {
-			order = new Order();
-		}
-		List list = (List) this.service.find(order, "lists");
-		Cus cus = (Cus) list.get(0);
-		data4 = cus.getType();
-		System.err.print(data4);
-		return Integer.valueOf(data4);
 	}
 
 	@RequestMapping({ "/ajax3" })//与ajax1同，只是取得字段不同
 	@ResponseBody
-	public Object ajax3(Order order, HttpServletRequest request) {
+	public Object ajax3(Order2 order2, HttpServletRequest request) {
 		int data3 = 0;
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
-		List list = (List) this.service.find(order, "listt");
+		List list = (List) this.service.find(order2, "listt");
 		Goods goods = (Goods) list.get(0);
 		data3 = goods.getPrice();
 		System.err.print(data3);
 		return Integer.valueOf(data3);
 	}
 	
-	
 	@RequestMapping({ "/ajax" })
 	@ResponseBody
-	public Object ajax(Order order, HttpServletRequest request) {
+	public Object ajax(Order2 order2, HttpServletRequest request) {
 		int data = 0;
-		if (order == null) {
-			order = new Order();
+		if (order2 == null) {
+			order2 = new Order2();
 		}
 		// if ((Order.getOrdername() != "") && (this.service.find(goods,
 		// "findGoodsname") != null)) {
@@ -179,13 +167,13 @@ public class OrderAction extends CommonAction {
 
 	@RequestMapping({ "/delete" })
 		@ResponseBody
-		public Object delete(Order order, Pages page, HttpServletRequest request) {
-			if (order == null) {
-				order = new Order();
+		public Object delete(Order2 order2, Pages page, HttpServletRequest request) {
+			if (order2 == null) {
+				order2 = new Order2();
 			}
 			int data = 0;
-			System.err.println(order.getOrderid());
-				if(this.service.delete(order)){
+			System.err.println(order2.getOrder2id());
+				if(this.service.delete(order2)){
 					data = 1;
 				System.err.println("789456");
 				
