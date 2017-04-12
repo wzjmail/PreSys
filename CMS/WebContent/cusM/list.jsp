@@ -41,14 +41,14 @@
 											<div class="col-xs-12 col-sm-12">
 												检索:<input type="text" name="search" placeholder="单位名称/电话"
 													value="${us.search}" />
-												<c:if test="${loginU.role eq 1 }">&nbsp;单位类型 <select
+												<c:if test="${loginU.role eq 1 }">&nbsp;单位信用<select
 														name="role" >
 														<option value="-1"
 															<c:if test="${us.role eq -1 }">selected="selected"</c:if>>全选</option>
 														<option value="1"
-															<c:if test="${us.role eq 1 }">selected="selected"</c:if>>经销商</option>
+															<c:if test="${us.role eq 1 }">selected="selected"</c:if>>好</option>
 														<option value="0"
-															<c:if test="${us.role eq 0}">selected="selected"</c:if>>供应商</option>
+															<c:if test="${us.role eq 0}">selected="selected"</c:if>>一般</option>
 														
 													</select>
 												</c:if>
@@ -74,7 +74,7 @@
 										</label></th>
 										<th class="center">单位名称</th>
 										<th class="center">电话</th>
-										<th class="center">单位类型</th>
+										<th class="center">单位信用</th>
 										<th class="center">操作</th>
 									</tr>
 								</thead>
@@ -91,9 +91,9 @@
 													<div class="chanR" style="display: none">
 														<select class="type">
 															<option value="1"
-																<c:if test="${li.type eq 1 }">selected="selected"</c:if>>经销商</option>
+																<c:if test="${li.type eq 1 }">selected="selected"</c:if>>好</option>
 															<option value="0"
-																<c:if test="${li.type eq 0 }">selected="selected"</c:if>>供应商</option>
+																<c:if test="${li.type eq 0 }">selected="selected"</c:if>>一般</option>
 															
 														</select>
 													</div>
@@ -103,11 +103,11 @@
 																class="label label-success arrowed-in-right arrowed"></span>
 														</c:if>--%>
 														<c:if test="${li.type eq 1}">
-															<span class="label label-danger arrowed-in-right arrowed">经销商</span>
+															<span class="label label-danger arrowed-in-right arrowed">好</span>
 														</c:if>
 														<c:if test="${li.type eq 0}">
 															<span
-																class="label label-warning arrowed-in-right arrowed">供应商</span>
+																class="label label-warning arrowed-in-right arrowed">一般</span>
 														</c:if>
 														
 													</div>
