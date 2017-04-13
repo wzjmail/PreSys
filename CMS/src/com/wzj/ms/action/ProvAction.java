@@ -29,7 +29,7 @@ public class ProvAction extends CommonAction{
 		if (!Utils.isNULL(prov.getId())) {
 			System.out.println("**********************");
 			this.map.put("prov", this.service.find(prov));
-			System.err.println(this.service.find(prov));
+			//System.err.println(this.service.find(prov));
 		}
 
 		return new ModelAndView("provM/update", this.map);

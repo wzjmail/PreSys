@@ -61,6 +61,15 @@
 						method="post" id="form-list" commandName="listt">
 						<input type="hidden" name="id" class="id"
 							value="${listt.orderid}" />
+							
+						<!-- 合作时长 -->
+								<input type="text" " readonly="readonly" name="yearcount" value="${listt.yearcount}"
+									style="display: none" class="yearcount" />
+									
+						<!-- 顾客信用度 -->
+						<input type="text" " readonly="readonly" name="custype" value="${listt.custype}"
+							style="display: none" class="custype" />
+									
 						<input type="hidden" name="utime" class="utime"
 							value="${listt.utime}" />
 						<div class="row" style="height: 50px;">
@@ -110,7 +119,7 @@
 								<span class="sright"><font size="3">实际价格:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.nprice}" name="nprice"
+								<input type="text" value="${listt.nprice}" name="nprice" readonly="readonly" 
 									class=" col-xs-5 nprice" />
 								<div id="undiv" style="display: none">
 									<font color="red">不能为空</font>
@@ -292,6 +301,40 @@
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
 		jQuery(function($) {
+			$(".amount").off("blur").on("blur", function() {
+				var cname = $(this).val();
+				if (cname != "") {
+					$.post("orderM/ajax7.action", {
+						"cname" : cname
+					}, function(data7, status) {
+						if (status == "success") {
+							$(".yearcount").val(data7);
+
+						}
+					});
+				}
+			});
+			
+			$(".amount").off("blur").on("blur", function() {
+				var amount = $(this).val();
+				var yearcount = $(".yearcount").val();
+				var oprice = $(".oprice").val();
+				var custype = $(".custype").val();
+				if (amount != "") {
+					$.post("orderM/ajax8.action", {
+						"yearcount" : yearcount,
+						"custype" : custype,
+						"amount" : amount,
+						"oprice" : oprice
+					}, function(data8, status) {
+						if (status == "success") {
+							alert("根据顾客信用、合作年限以及订购数量决定其实际价格，详情请见价格优惠政策");
+							$(".nprice").val(data8);
+
+						}
+					});
+				}
+			});
 			$("#select2").change(function() {
 
 				var state = $(this).val();

@@ -74,17 +74,10 @@
 							</div>
 
 						</div>
-						<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">商品ID:</font></span>
-							</div>
-							<div style="padding-top: 13px;">
-								<input type="text" readonly="readonly" name="goodsid"
-									class="goodsid" />
+						<!-- 商品id -->
+						<input type="text" readonly="readonly" name="goodsid"
+							style="display: none" class="goodsid" />
 
-							</div>
-						</div>
 
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
@@ -101,17 +94,10 @@
 								</select>
 							</div>
 						</div>
-						<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">单位ID:</font></span>
-							</div>
-							<div style="padding-top: 13px;">
+						<!-- 单位id -->
+						
 								<input type="text" " readonly="readonly" name="cusid"
-									class="cusid" />
-
-							</div>
-						</div>
+									style="display: none" class="cusid" />
 
 
 						<!-- <div class="row" style="height: 50px;">
@@ -138,35 +124,21 @@
 							</div>
 						</div>
  -->
+						<!-- 合作时长 -->
 
-
-						<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">合作时长：</font></span>
-							</div>
-							<div style="padding-top: 13px;">
+						
+							
 								<input type="text" " readonly="readonly" name="yearcount"
-									class="yearcount" />
+									style="display: none" class="yearcount" />
 
-							</div>
-						</div>
+						<!-- 标价 -->
 
-
-						<div class="row" style="height: 50px;">
-							<div class="col-xs-2"></div>
-							<div class="col-xs-2" style="padding-top: 13px;">
-								<span class="sright"><font size="3">标价:</font></span>
-							</div>
-							<div style="padding-top: 13px;">
+						
 								<input onfocus="this.type='text'" placeholder="标价"
-									readonly="readonly" name="oprice" class=" col-xs-5 oprice" />
+									style="display: none" readonly="readonly" name="oprice"
+									class=" col-xs-5 oprice" />
 
-								<!--<div id="succ" style="display: none">
-									<font color="green">可用</font>
-								</div>  -->
-							</div>
-						</div>
+						
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
@@ -188,8 +160,8 @@
 								<span class="sright"><font size="3">实际价格:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input onfocus="this.type='text'" placeholder="实际价格"  readonly="readonly"
-									name="nprice" class=" col-xs-5 nprice" />
+								<input onfocus="this.type='text'" placeholder="实际价格"
+									readonly="readonly" name="nprice" class=" col-xs-5 nprice" />
 								<div id="undiv1" style="display: none">
 									<font color="red">不能为空</font>
 								</div>
@@ -212,24 +184,15 @@
 								</select>
 							</div>
 						</div>
-
-						<div class="row" style="height: 50px;">
-
-							<div style="padding-top: 13px;">
-								<input type="text"  readonly="readonly" name="type"
+<!-- 订单类型 -->
+						
+								<input type="text" readonly="readonly" name="type"
 									style="display: none" value=1 class="type" />
 
-							</div>
-						</div>
-
-						<div class="row" style="height: 50px;">
-
-							<div style="padding-top: 13px;">
+						
+<!-- 顾客信用度 -->
 								<input type="text" " readonly="readonly" name="custype"
 									style="display: none" class="custype" />
-
-							</div>
-						</div>
 
 						<!-- <div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
@@ -333,7 +296,6 @@
 	<!-- inline scripts related to this page -->
 
 	<script type="text/javascript">
-	
 		$("#select").change(function() {
 
 			var gname = $(this).val();
@@ -352,7 +314,7 @@
 				});
 			}
 		});//document.getElementById('Id名').focus(); 
-	
+
 		$("#select").change(function() {
 
 			var gname = $(this).val();
@@ -490,31 +452,30 @@
 				});
 			}
 		});
-		
-	/*	$(".submit").click(function() {
-			var state = $(".state").val();
-			var type = $(".type").val();
-			
-			if (state == -1) {
-				alert("请选择订单状态");
 
-			} else if (type == -1) {
-				alert("请选择订单类型")
-			} else {
+		/*	$(".submit").click(function() {
+				var state = $(".state").val();
+				var type = $(".type").val();
+				
+				if (state == -1) {
+					alert("请选择订单状态");
 
-				$("#form-list").submit();
-			}
+				} else if (type == -1) {
+					alert("请选择订单类型")
+				} else {
 
-		});*/
-		
-		
-		$(".submit").click( function() {
+					$("#form-list").submit();
+				}
+
+			});*/
+
+		$(".submit").click(function() {
 			var amount = $(".amount").val();
 			var yearcount = $(".yearcount").val();
 			var oprice = $(".oprice").val();
 			var custype = $(".custype").val();
 			if (amount != "") {
-				
+
 				$.post("orderM/ajax8.action", {
 					"yearcount" : yearcount,
 					"custype" : custype,
@@ -537,11 +498,10 @@
 			} else if (type == -1) {
 				alert("请选择订单类型")
 			} else {
-               alert("确定无误，即将提交")
+				alert("确定无误，即将提交")
 				$("#form-list").submit();
 			}
 		});
-		
 
 		$(".nprice").off("blur").on("blur", function() {
 			var nprice = $(this).val();
@@ -560,7 +520,6 @@
 			}
 		});
 
-		
 		;
 	</script>
 </body>

@@ -223,7 +223,6 @@ public class OrderAction extends CommonAction {
 		int type = order.getCustype();
 		int yearcount = order.getYearcount();
 		// System.err.println("2///////////////////");
-		System.err.println(amount);
 		System.err.println(type);
 		System.err.println(yearcount);
 		if(amount<100){

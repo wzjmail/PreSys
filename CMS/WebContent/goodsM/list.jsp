@@ -131,24 +131,16 @@
 												<td class="center">
 													<div
 														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-														<c:if test="${loginU.role ne 1 }">
-															<c:if test="${loginU.sname eq 
-															li.name }">
-																<a class="green updateGoods"
-																	href="goodsM/query.action?id=${li.id}"> <i
-																	class="icon-pencil bigger-130"></i>
-																</a>
-															</c:if>
-														</c:if>
-														<c:if test="${loginU.role eq 1 }">
+														
+															
 															<a class="green updateGoods"
 																href="goodsM/query.action?id=${li.id}"> <i
 																class="icon-pencil bigger-130"></i>
 															</a>
-															<c:if test="${loginU.name ne li.name }"><a class="red delete"> <i
+															<a class="red delete"> <i
 																class="icon-trash bigger-130"></i>
-															</a></c:if>
-														</c:if>
+															</a>
+												
 													</div>
 												</td>
 											</tr>

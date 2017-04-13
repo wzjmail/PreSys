@@ -64,11 +64,9 @@ public class GoodsAction extends CommonAction{
 			goods.setId(Utils.uuID()); 
 			goods.setTime(Utils.DateTime("yyyy-MM-dd HH:mm:ss"));
 			this.service.insert(goods, "insertGoods");
-			goods.setRole(-1);System.out.print(goods);
-			request.getSession().removeAttribute("agoods");
-			request.getSession().removeAttribute("sgoods");
-			List alist = (List) this.service.list(goods, "allgoodslist", new Pages(1, 100)).get("list"); 
 			
+			
+			List alist = (List) this.service.list(goods, "allgoodslist", new Pages(1, 100)).get("list"); 
 			request.getSession().setAttribute("agoods", alist);
 			
 			return list(goods, page, request);

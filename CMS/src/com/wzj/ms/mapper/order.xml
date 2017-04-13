@@ -58,8 +58,8 @@
 
 	<insert id="insertOrder" parameterType="Order">
 		insert into zj_orderlog
-		(orderid,goodsid,cusid,time,state,oprice,nprice,amount,type) values
-		(#{orderid},#{goodsid},#{cusid},#{time},#{state},#{oprice},#{nprice},#{amount},#{type});
+		(orderid,goodsid,cusid,time,state,oprice,nprice,amount,type,custype,yearcount) values
+		(#{orderid},#{goodsid},#{cusid},#{time},#{state},#{oprice},#{nprice},#{amount},#{type},#{custype},#{yearcount});
 
 	</insert>
 
