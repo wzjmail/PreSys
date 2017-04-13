@@ -62,7 +62,7 @@ public class CusAction extends CommonAction{
 				cus = new Cus();
 			}
 			cus.setId(Utils.uuID()); 
-			cus.setTime(Utils.DateTime("yyyy-MM-dd HH:mm:ss"));
+			cus.setTime(Utils.DateTime("yyyy-MM-dd HH:mm"));
 			this.service.insert(cus, "insertCus");
 			cus.setRole(-1);System.out.print(cus);
 			request.getSession().removeAttribute("acus");

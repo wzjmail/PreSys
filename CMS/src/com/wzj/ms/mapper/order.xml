@@ -69,18 +69,6 @@
 		WHERE orderid=#{orderid} </select> -->
 
 
-	<!-- 获取信息 -->
-	<select id="findd" parameterType="Order" resultType="Order">
-		SELECT od.*,cus.name cname,goods.name gname FROM zj_orderlog od LEFT
-		JOIN zj_customer cus ON od.cusid=cus.id LEFT JOIN zj_goods goods ON
-		od.goodsid=goods.id
-		where 1=1
-		<if test="orderid!=null and orderid!='' ">
-			and orderid=#{id}
-		</if>
-
-
-	</select>
 	<select id="find" parameterType="Order" resultType="Order">
 		SELECT
 		od.*,cus.name cname,goods.name gname ,goodsid,cusid FROM zj_orderlog

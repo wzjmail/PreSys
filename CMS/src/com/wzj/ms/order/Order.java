@@ -2,13 +2,67 @@ package com.wzj.ms.order;
 
 public class Order extends Common
 {
-	
+	  private String atime;
+	  public String getAtime() {
+		return atime;
+	}
+
+
+	public void setAtime(String atime) {
+		this.atime = atime;
+	}
+
+
+	public String getCtime() {
+		return ctime;
+	}
+
+
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
+
+
+	private String ctime;
 	  private int price;
-	  private int storage;
+	  private int yearcount;
+	  public int getYearcount() {
+		return yearcount;
+	}
+
+
+	public void setYearcount(int yearcount) {
+		this.yearcount = yearcount;
+	}
+
+
+	private int storage;
+	private int custype;
+	public int getCustype() {
+		return custype;
+	}
+
+
+	public void setCustype(int custype) {
+		this.custype = custype;
+	}
+
+
 	private String image;
 	private int newNum;
 	private int newNumB;
 	private int num;
+	private int amount;
+	public int getAmount() {
+		return amount;
+	}
+
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+
 	private int numAll;
 	private int number;
 	private String password;  private String order2id;

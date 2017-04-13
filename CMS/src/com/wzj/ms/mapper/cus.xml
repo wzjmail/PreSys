@@ -7,7 +7,7 @@
 <select id="list" parameterType="Cus" resultType="Cus">
 
 SELECT
-  `id`, `name`, `tel`,`type`
+  `id`, `name`, `tel`,`type`,`time`
 FROM zj_customer where 
 1=1
 
@@ -43,13 +43,13 @@ FROM zj_customer where
 	<!-- 添加新用户 -->
 	<insert id="insertCus" parameterType="Cus">
 		insert into zj_customer
-		(id,name,tel,type) values
-		(#{id},#{name},#{tel},#{type})
+		(id,name,tel,type,time) values
+		(#{id},#{name},#{tel},#{type},#{time})
 	</insert>
 	
 		<!-- 获取登陆账户信息 -->
 		<select id="find" parameterType="Cus" resultType="Cus">
-		SELECT id,name,tel,type
+		SELECT id,name,tel,type,time
 		FROM zj_customer WHERE
 		id=#{id}
 		<if test="name!=null and name!='' ">
