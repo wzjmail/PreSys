@@ -42,7 +42,7 @@
         <!-- Footer -->
         <div id="da-footer">
         	<div class="da-container clearfix">
-           	<p> 2016 . All Rights Reserved. 米良餐饮 </p></div>
+           
         </div>
     </div>
     

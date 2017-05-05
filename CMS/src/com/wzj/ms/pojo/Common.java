@@ -5,7 +5,16 @@ import com.wzj.ms.utils.Utils;
 public class Common
 {
   private String id;
-  private String name;
+  private String text;
+  public String getText() {
+	return text;
+}
+
+public void setText(String text) {
+	this.text = text;
+}
+
+private String name;
   private String username;
   private String ip;
   private String area;
@@ -15,17 +24,17 @@ public class Common
   private Integer project;
   private int role;
   private String password;
-  public int getPrices() {
+  public double getPrices() {
 	return prices;
 }
 
-public void setPrices(int prices) {
+public void setPrices(double prices) {
 	this.prices = prices;
 }
 
 private String qq;
   private int permission;
-  private int status;private int prices;
+  private int status;private double prices;
   private String tel;
   private String time;
   private Integer type = Integer.valueOf(0);

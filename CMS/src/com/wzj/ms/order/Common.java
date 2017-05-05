@@ -114,19 +114,19 @@ public void setState(int state) {
 	this.state = state;
 }
 
-public int getOprice() {
+public double getOprice() {
 	return oprice;
 }
 
-public void setOprice(int oprice) {
+public void setOprice(double oprice) {
 	this.oprice = oprice;
 }
 
-public int getNprice() {
+public double getNprice() {
 	return nprice;
 }
 
-public void setNprice(int nprice) {
+public void setNprice(double nprice) {
 	this.nprice = nprice;
 }
 
@@ -141,8 +141,8 @@ public void setAmount(int amount) {
 private String cusid;
   private String goodsid;
   private int state;
-  private int oprice;
-  private int nprice; private int amount;
+  private double oprice;
+  private double nprice; private int amount;
   
   
 

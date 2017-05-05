@@ -127,7 +127,7 @@
 	<update id="update1" parameterType="Goods">
 
 		update zj_goods set
-		oamount=1             <!-- oamount类似于where1=1的作用，防止语句错误 -->
+		extra=1             <!-- extra类似于where1=1的作用，防止语句错误 -->
 		<if test="state==1">
 			<if test="type==1">
 
@@ -150,7 +150,7 @@
 	<update id="update2" parameterType="Goods">
 
 		update zj_goods set
-		oamount=1            
+		extra=1            
 		<if test="state==1">
 			<if test="type==1">
 

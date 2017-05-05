@@ -139,7 +139,7 @@ public class Order2Action extends CommonAction {
 	@RequestMapping({ "/ajax3" })//与ajax1同，只是取得字段不同
 	@ResponseBody
 	public Object ajax3(Order2 order2, HttpServletRequest request) {
-		int data3 = 0;
+		double data3 = 0;
 		if (order2 == null) {
 			order2 = new Order2();
 		}
@@ -147,7 +147,7 @@ public class Order2Action extends CommonAction {
 		Goods goods = (Goods) list.get(0);
 		data3 = goods.getPrice();
 		System.err.print(data3);
-		return Integer.valueOf(data3);
+		return data3;
 	}
 	
 	@RequestMapping({ "/ajax" })

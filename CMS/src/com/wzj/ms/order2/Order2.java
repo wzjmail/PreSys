@@ -11,7 +11,7 @@ public class Order2 extends Common {
 		this.order2id = order2id;
 	}
 
-	private int price;
+	private double price;
 	private int storage;
 	private String image;
 	private String pname;
@@ -43,7 +43,7 @@ public class Order2 extends Common {
 	private int ty;
 	private String session;
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
@@ -63,7 +63,7 @@ public class Order2 extends Common {
 		return password;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

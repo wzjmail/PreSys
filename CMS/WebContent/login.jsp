@@ -38,7 +38,7 @@
 						class="login-container">
 						<div class="center">
 							<h1>
-								<img style="height: 100px;" src="images/logo/logo.png" />
+								
 							</h1>
 						</div>
 

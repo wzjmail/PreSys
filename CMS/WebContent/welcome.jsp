@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>welcome</title>
+<title>welcome</title><link rel="stylesheet" type="text/css" href="assets/css/component.css" />
 </head>
 <body>
 <img src="images/welcome.png" style="height: 100%;width: 100%">

@@ -3,7 +3,7 @@ package com.wzj.ms.order2;
 public class Order extends Common
 {
 	
-	  private int price;
+	  private double price;
 	  private int storage;
 	private String image;
 	private int newNum;
@@ -15,7 +15,7 @@ public class Order extends Common
 	private int role;	private int ty;
 	private String session;
 	
-	  public int getPrice() {
+	  public double getPrice() {
 		return price;
 	}
 
@@ -40,7 +40,7 @@ public class Order extends Common
 	}
 
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

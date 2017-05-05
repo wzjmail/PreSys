@@ -11,7 +11,7 @@ public class User extends Common
   private int newNum;
   private int newNumB;
   private String image;
-  private int price;
+  private double price;
   private int storage;
   public int getStorage() {
 	return storage;
@@ -23,12 +23,12 @@ public void setStorage(int storage) {
 }
 
 
-public int getPrice() {
+public double getPrice() {
 	return price;
 }
 
 
-public void setPrice(int price) {
+public void setPrice(double price) {
 	this.price = price;
 }
   public int getNewNum()

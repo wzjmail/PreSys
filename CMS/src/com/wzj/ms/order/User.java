@@ -11,13 +11,13 @@ private int number;
 private String password;
 private int role;
 private String session;
-private int price;
-public int getPrice() {
+private double price;
+public double getPrice() {
 	return price;
 }
 
 
-public void setPrice(int price) {
+public void setPrice(double price) {
 	this.price = price;
 }
 

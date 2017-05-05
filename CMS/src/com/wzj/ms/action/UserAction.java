@@ -31,7 +31,7 @@ public class UserAction extends CommonAction {
 		user.setSession(Utils.uuID());
 		request.getSession().setAttribute("loginU", user);
 		User u = (User) request.getSession().getAttribute("loginU");
-		if (u.getRole() == 3) {
+	/*	if (u.getRole() == 3) {
 			int newNum = ((Integer) this.service.find(user, "findNewRet")).intValue();
 			int allCus = ((Integer) this.service.find(user, "findAllRetNum")).intValue();
 			if (allCus == 0) {
@@ -39,8 +39,8 @@ public class UserAction extends CommonAction {
 			}
 			this.map.put("newNum", Integer.valueOf(newNum));
 			this.map.put("newNumB", Integer.valueOf(newNum * 100 / allCus));
-		}
-		if (u.getRole() == 0) {
+		}*/
+	/*	if (u.getRole() == 0) {
 			int nRate = 0;
 			int aRate = 0;
 			user.setName(u.getName());
@@ -50,8 +50,9 @@ public class UserAction extends CommonAction {
 			if (this.service.find(user, "findCusRateAll") != null) {
 				aRate = ((Integer) this.service.find(user, "findCusRateAll")).intValue();
 			}*/
-			int newNum = ((Integer) this.service.find(user, "findNewCus")).intValue();
-			int allCus = ((Integer) this.service.find(user, "findAllCus")).intValue();
+			
+			/*
+			 * int allCus = ((Integer) this.service.find(user, "findAllCus")).intValue();
 			if (aRate == 0) {
 				aRate = 1;
 				nRate = 1;
@@ -65,9 +66,9 @@ public class UserAction extends CommonAction {
 			this.map.put("num", Integer.valueOf(nRate));
 			this.map.put("numAll", Integer.valueOf(aRate));
 			this.map.put("number", Integer.valueOf(nRate * 100 / aRate));
-			this.map.put("newNum", Integer.valueOf(newNum));
-			this.map.put("newNumB", Integer.valueOf(newNum * 100 / allCus));
-		}
+			
+			
+		}*/
 		return new ModelAndView("index", this.map);
 	}
 
@@ -151,7 +152,14 @@ public class UserAction extends CommonAction {
 	    this.map.put("us", user);
 	    return new ModelAndView("userM/list", this.map);
 	  }
-	
+	 
+	 @RequestMapping({ "/message" })
+		@ResponseBody
+		public ModelAndView message(User user, HttpServletRequest request) {
+		 
+
+			return new ModelAndView("userM/message", this.map);
+		}
 	
 	
 	@RequestMapping({ "/query" })
@@ -183,7 +191,7 @@ public class UserAction extends CommonAction {
 		
 		user.setId(Utils.uuID()); 
 		user.setTime(Utils.DateTime("yyyy-MM-dd HH:mm:ss"));
-		this.service.insert(user, "insertGoods");
+		this.service.insert(user, "insertUser");
 		user.setRole(-1);System.out.print(user);System.out.print("**********************");	
 		request.getSession().removeAttribute("auser");
 		request.getSession().removeAttribute("suser");

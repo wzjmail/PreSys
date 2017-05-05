@@ -35,15 +35,14 @@
 							commandName="order">
 							<table id="sample-table-1"
 								class="table table-striped table-bordered table-hover">
+
+
 								<thead>
 									<tr>
 										<td colspan="8">
 											<div class="col-xs-12 col-sm-12">
 												检索:<input type="text" name="search" placeholder="商品名/单位名称"
-													value="${us1.search}" />
-
-												
-												&nbsp;
+													value="${us.search}" /> &nbsp;
 												<button class="btn btn-primary search">
 													<i class="icon-cloud-upload bigger-110"></i> 查询
 												</button>
@@ -56,6 +55,10 @@
 										</td>
 									</tr>
 								</thead>
+
+
+
+
 								<thead>
 									<tr>
 										<th class="center"><label> <input type="checkbox"
@@ -115,8 +118,8 @@
 												</div>
 											<td class="center">
 												<div>
-												
-														<c:if test="${li.state eq 0}">
+
+													<c:if test="${li.state eq 0}">
 														<a class="green updateUser"
 															href="orderM/query.action?id=${li.orderid}"> <i
 															class="icon-pencil bigger-130"></i>

@@ -59,17 +59,22 @@
 					<!-- PAGE CONTENT BEGINS -->
 					<s:form action="orderM/update.action" class="form-horizontal"
 						method="post" id="form-list" commandName="listt">
-						<input type="hidden" name="id" class="id"
-							value="${listt.orderid}" />
-							
+						<input type="hidden" name="id" class="id" value="${listt.orderid}" />
+						<input type="text" " readonly="readonly" name="type"
+							value="${listt.type}" style="display: none"
+							class="type" />
 						<!-- 合作时长 -->
-								<input type="text" " readonly="readonly" name="yearcount" value="${listt.yearcount}"
-									style="display: none" class="yearcount" />
-									
+						<input type="text" " readonly="readonly" name="yearcount"
+							value="${listt.yearcount}" style="display: none"
+							class="yearcount" />
+						<!-- 商品库存 -->
+						<input type="text" readonly="readonly" name="storage"
+							style="display: none" value="${listt.storage}" class="storage" />
+
 						<!-- 顾客信用度 -->
-						<input type="text" " readonly="readonly" name="custype" value="${listt.custype}"
-							style="display: none" class="custype" />
-									
+						<input type="text" " readonly="readonly" name="custype"
+							value="${listt.custype}" style="display: none" class="custype" />
+
 						<input type="hidden" name="utime" class="utime"
 							value="${listt.utime}" />
 						<div class="row" style="height: 50px;">
@@ -119,8 +124,8 @@
 								<span class="sright"><font size="3">实际价格:</font></span>
 							</div>
 							<div style="padding-top: 13px;">
-								<input type="text" value="${listt.nprice}" name="nprice" readonly="readonly" 
-									class=" col-xs-5 nprice" />
+								<input type="text" value="${listt.nprice}" name="nprice"
+									readonly="readonly" class=" col-xs-5 nprice" />
 								<div id="undiv" style="display: none">
 									<font color="red">不能为空</font>
 								</div>
@@ -314,25 +319,31 @@
 					});
 				}
 			});
-			
+
 			$(".amount").off("blur").on("blur", function() {
 				var amount = $(this).val();
 				var yearcount = $(".yearcount").val();
 				var oprice = $(".oprice").val();
 				var custype = $(".custype").val();
-				if (amount != "") {
+				var storage = $(".storage").val();
+				if (storage - amount >= 0) {
+
 					$.post("orderM/ajax8.action", {
 						"yearcount" : yearcount,
 						"custype" : custype,
 						"amount" : amount,
 						"oprice" : oprice
 					}, function(data8, status) {
+
 						if (status == "success") {
 							alert("根据顾客信用、合作年限以及订购数量决定其实际价格，详情请见价格优惠政策");
 							$(".nprice").val(data8);
 
 						}
 					});
+				} else if (storage - amount < 0) {
+					alert("库存不足，至多可以选购 " + storage + "件,请及时补充库存");
+					$(".amount").focus();
 				}
 			});
 			$("#select2").change(function() {
@@ -346,23 +357,20 @@
 
 			$(".submit").click(function() {
 				var state = $(".state").val();
-				var type = $(".type").val();
 
 				if (state == -1) {
 					alert("请选择订单状态");
 
-				} else if (type == -1) {
-					alert("请选择订单类型")
 				} else {
 					alert("确定修改么");
 					$("#form-list").submit();
+					if(amount-storage<100&&state==1){alert("库存不足100件，请及时补充商品！")}
+					
 				}
 
 			});
 
 		})
-	
-		
 	</script>
 </body>
 </html>

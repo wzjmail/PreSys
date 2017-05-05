@@ -55,17 +55,16 @@
 															<c:if test="${us.role eq 4 }">selected="selected"</c:if>>服装饰品</option>
 													</select>
 												</c:if>
-												&nbsp;
+												&nbsp; 
+												
 												<button class="btn btn-primary search">
 													<i class="icon-cloud-upload bigger-110"></i> 查询
 												</button>
-												&nbsp;
-												
-													<a href="goodsM/addGoods.action"><button type="button"
-															class="btn btn-success radius-5">
-															<i class="icon-save bigger-110"></i>增加
-														</button></a>
-												
+												&nbsp; <a href="goodsM/addGoods.action"><button
+														type="button" class="btn btn-success radius-5">
+														<i class="icon-save bigger-110"></i>增加
+													</button></a>
+
 											</div>
 										</td>
 									</tr>
@@ -83,70 +82,67 @@
 									</tr>
 								</thead>
 								<tbody>
-								<%-- <c:if test="${loginU.role eq  1 }">--%>	
-										<c:forEach items="${list}" var="li">
-											<tr>
-												<td class="center"><label> <input
-														type="checkbox" class="ace" /> <span class="lbl"></span>
-												</label> <input class="id" type="hidden" value="${li.id}" /></td>
-												<td class="center name">${li.name}</td>
-												<td class="center price">${li.price}</td>
-												<td class="center">
-													<div class="chanR"  style="display:none">
-														<select class="ty">
-															<option value="1"
-																<c:if test="${li.type eq 1 }">selected="selected"</c:if>>个人护理</option>
-															<option value="2"
-																<c:if test="${li.type eq 2 }">selected="selected"</c:if>>零食/茶酒</option>
-															<option value="3"
-																<c:if test="${li.type eq 3 }">selected="selected"</c:if>>厨具/收纳option>
-															<option value="4"
-																<c:if test="${li.type eq 4 }">selected="selected"</c:if>>服装饰品</option>
-														</select>
-													</div>
-													<div class="showR">
-														<%-- <c:if test="${li.role eq 0}"> 
+									<%-- <c:if test="${loginU.role eq  1 }">--%>
+									<c:forEach items="${list}" var="li">
+										<tr>
+											<td class="center"><label> <input
+													type="checkbox" class="ace" /> <span class="lbl"></span>
+											</label> <input class="id" type="hidden" value="${li.id}" /></td>
+											<td class="center name">${li.name}</td>
+											<td class="center price">${li.price}</td>
+											<td class="center">
+												<div class="chanR" style="display: none">
+													<select class="ty">
+														<option value="1"
+															<c:if test="${li.type eq 1 }">selected="selected"</c:if>>个人护理</option>
+														<option value="2"
+															<c:if test="${li.type eq 2 }">selected="selected"</c:if>>零食/茶酒</option>
+														<option value="3"
+															<c:if test="${li.type eq 3 }">selected="selected"</c:if>>厨具/收纳option>
+														
+														<option value="4"
+															<c:if test="${li.type eq 4 }">selected="selected"</c:if>>服装饰品</option>
+													</select>
+												</div>
+												<div class="showR">
+													<%-- <c:if test="${li.role eq 0}"> 
 															<span
 																class="label label-success arrowed-in-right arrowed"></span>
 														</c:if>--%>
-														<c:if test="${li.type eq 1}">
-															<span class="label label-danger arrowed-in-right arrowed">个人护理</span>
-														</c:if>
-														<c:if test="${li.type eq 2}">
-															<span
-																class="label label-warning arrowed-in-right arrowed">零食/茶酒</span>
-														</c:if>
-														<c:if test="${li.type eq 3}">
-															<span
-																class="label label-info arrowed-in-right arrowed">厨具/收纳</span>
-														</c:if>
-														<c:if test="${li.type eq 4}">
-															<span
-																class="label label-info arrowed-in-right arrowed">服装饰品</span>
-														</c:if>
-													</div>
-												</td>
+													<c:if test="${li.type eq 1}">
+														<span class="label label-danger arrowed-in-right arrowed">个人护理</span>
+													</c:if>
+													<c:if test="${li.type eq 2}">
+														<span class="label label-warning arrowed-in-right arrowed">零食/茶酒</span>
+													</c:if>
+													<c:if test="${li.type eq 3}">
+														<span class="label label-info arrowed-in-right arrowed">厨具/收纳</span>
+													</c:if>
+													<c:if test="${li.type eq 4}">
+														<span class="label label-info arrowed-in-right arrowed">服装饰品</span>
+													</c:if>
+												</div>
+											</td>
 											<%--<td class="center">${li.time}</td> --%>
-												<td class="center storage">${li.storage}</td>
-												<td class="center">
-													<div
-														class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-														
-															
-															<a class="green updateGoods"
-																href="goodsM/query.action?id=${li.id}"> <i
-																class="icon-pencil bigger-130"></i>
-															</a>
-															<a class="red delete"> <i
-																class="icon-trash bigger-130"></i>
-															</a>
-												
-													</div>
-												</td>
-											</tr>
-										</c:forEach>
-							<%--</c:if> --%>	
-						<%--<c:if test="${loginU.role ne  1 }">
+											<td class="center storage">${li.storage}</td>
+											<td class="center">
+												<div
+													class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+
+
+													<a class="green updateGoods"
+														href="goodsM/query.action?id=${li.id}"> <i
+														class="icon-pencil bigger-130"></i>
+													</a> <a class="red delete"> <i
+														class="icon-trash bigger-130"></i>
+													</a>
+
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+									<%--</c:if> --%>
+									<%--<c:if test="${loginU.role ne  1 }">
 										<c:forEach items="${list}" var="li">
 											<c:if test="${loginU.sign eq li.sign }">
 												<tr>
@@ -178,7 +174,7 @@
 												</tr>
 											</c:if>
 										</c:forEach>
-									</c:if> --%>			
+									</c:if> --%>
 								</tbody>
 								<tfoot>
 									<tr>
@@ -211,7 +207,9 @@
 	<!-- ace scripts -->
 	<script src="assets/js/ace.min.js?v=${version}"></script>
 	<!-- 分页插件 -->
-	<script type="text/javascript" src="js/page.js?v=${version}"></script>  <%-- javascript 常用来给web页面 添加各种动态功能，比如响应客户的 --%>>
+	<script type="text/javascript" src="js/page.js?v=${version}"></script>
+	<%-- javascript 常用来给web页面 添加各种动态功能，比如响应客户的 --%>
+	>
 	<script>
 		jQuery(function($) {
 			// checkbox 全选

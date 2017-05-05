@@ -24,7 +24,7 @@ public class Order extends Common
 
 
 	private String ctime;
-	  private int price;
+	  private double price;
 	  private int yearcount;
 	  public int getYearcount() {
 		return yearcount;
@@ -69,7 +69,7 @@ public class Order extends Common
 	private int role;	private int ty;
 	private String session;
 	
-	  public int getPrice() {
+	  public double getPrice() {
 		return price;
 	}
 
@@ -94,7 +94,7 @@ public class Order extends Common
 	}
 
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

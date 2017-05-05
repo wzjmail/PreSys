@@ -72,13 +72,14 @@
 									</c:forEach>
 								</select>
 							</div>
-
 						</div>
 						<!-- 商品id -->
 						<input type="text" readonly="readonly" name="goodsid"
 							style="display: none" class="goodsid" />
-
-
+							
+						<!-- 商品库存 -->
+						<input type="text" readonly="readonly" name="storage"
+						style="display: none"	 class="storage" />
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
@@ -95,9 +96,9 @@
 							</div>
 						</div>
 						<!-- 单位id -->
-						
-								<input type="text" " readonly="readonly" name="cusid"
-									style="display: none" class="cusid" />
+
+						<input type="text" " readonly="readonly" name="cusid"
+							style="display: none" class="cusid" />
 
 
 						<!-- <div class="row" style="height: 50px;">
@@ -126,19 +127,19 @@
  -->
 						<!-- 合作时长 -->
 
-						
-							
-								<input type="text" " readonly="readonly" name="yearcount"
-									style="display: none" class="yearcount" />
+
+
+						<input type="text" " readonly="readonly" name="yearcount"
+							style="display: none" class="yearcount" />
 
 						<!-- 标价 -->
 
-						
-								<input onfocus="this.type='text'" placeholder="标价"
-									style="display: none" readonly="readonly" name="oprice"
-									class=" col-xs-5 oprice" />
 
-						
+						<input onfocus="this.type='text'" placeholder="标价"
+							style="display: none" readonly="readonly" name="oprice"
+							class=" col-xs-5 oprice" />
+
+
 						<div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
 							<div class="col-xs-2" style="padding-top: 13px;">
@@ -184,15 +185,15 @@
 								</select>
 							</div>
 						</div>
-<!-- 订单类型 -->
-						
-								<input type="text" readonly="readonly" name="type"
-									style="display: none" value=1 class="type" />
+						<!-- 订单类型 -->
 
-						
-<!-- 顾客信用度 -->
-								<input type="text" " readonly="readonly" name="custype"
-									style="display: none" class="custype" />
+						<input type="text" readonly="readonly" name="type"
+							style="display: none" value=1 class="type" />
+
+
+						<!-- 顾客信用度 -->
+						<input type="text" " readonly="readonly" name="custype"
+							style="display: none" class="custype" />
 
 						<!-- <div class="row" style="height: 50px;">
 							<div class="col-xs-2"></div>
@@ -332,6 +333,25 @@
 				});
 			}
 		});
+		$("#select").change(function() {
+
+			var gname = $(this).val();
+			if (gname != "") {
+
+				$.post("orderM/ajax9.action", {
+					"gname" : gname
+				}, function(data9, status) {
+
+					if (status == "success") {
+
+						$(".storage").val(data9);
+
+						$(".amount").focus();
+					}
+
+				});
+			}
+		});
 
 		$("#select1").change(function() {
 
@@ -432,12 +452,14 @@
 			}
 		});
 		//yearCount      //$(sel).val(),
+
 		$(".amount").off("blur").on("blur", function() {
 			var amount = $(this).val();
 			var yearcount = $(".yearcount").val();
 			var oprice = $(".oprice").val();
 			var custype = $(".custype").val();
-			if (amount != "") {
+			var storage = $(".storage").val();
+			if (storage-amount>=0) {
 				$.post("orderM/ajax8.action", {
 					"yearcount" : yearcount,
 					"custype" : custype,
@@ -447,10 +469,17 @@
 					if (status == "success") {
 						alert("根据顾客信用、合作年限以及订购数量决定其实际价格，详情请见价格优惠政策");
 						$(".nprice").val(data8);
-
 					}
 				});
+			} else if(storage-amount<0) {
+				alert("库存不足，至多可以选购 " + storage + "件,请及时补充库存");
+				$(".amount").focus();
 			}
+
+			/*	if(storage-amount<=50){
+					alert("库存不足50件，请及时补充库存！");
+				}*/
+
 		});
 
 		/*	$(".submit").click(function() {
@@ -471,25 +500,16 @@
 
 		$(".submit").click(function() {
 			var amount = $(".amount").val();
+			var storage = $(".storage").val();
 			var yearcount = $(".yearcount").val();
 			var oprice = $(".oprice").val();
 			var custype = $(".custype").val();
-			if (amount != "") {
+			var gname = $(".gname").val();
 
-				$.post("orderM/ajax8.action", {
-					"yearcount" : yearcount,
-					"custype" : custype,
-					"amount" : amount,
-					"oprice" : oprice
-				}, function(data8, status) {
-					if (status == "success") {
-						$(".nprice").val(data8);
-
-					}
-				});
-			}
+			
 			var state = $(".state").val();
 			var type = $(".type").val();
+			
 			/*alert(state);
 			alert(type);*/
 			if (state == -1) {
@@ -500,6 +520,8 @@
 			} else {
 				alert("确定无误，即将提交")
 				$("#form-list").submit();
+				if(amount-storage<100&&state==1){alert("库存不足100件，请及时补充商品！")}
+				
 			}
 		});
 

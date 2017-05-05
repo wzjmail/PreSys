@@ -9,12 +9,10 @@
 		zj_user WHERE username=#{username} and password=#{password}
 	</select>
 	<select id="list" parameterType="User" resultType="User">
-		SELECT id,username,PASSWORD,NAME,role,time,dept
+		SELECT id,username,PASSWORD,NAME,role,time
 		FROM zj_user WHERE
 		1=1
-		<if test="dept!=null and dept!=0">
-			and dept=#{dept}
-		</if>
+		
 		<!-- 根据关键字查询-->
 		<if test="search!=null and search!=''">    <!-- test= 用于检测一个字符串是否匹配某个模式 -->
 			and (name like CONCAT(CONCAT('%', #{search}), '%') or
@@ -29,6 +27,9 @@
 		order by time desc
 	</select>
 
+
+
+
 	<!-- 修改用户 -->
 	<update id="update" parameterType="User">
 		update zj_user set id=#{id}
@@ -41,9 +42,7 @@
 		<if test="password!=null and password!='' ">
 			,password=#{password}
 		</if>
-		<if test="dept!='' and dept!=null ">
-			,department=#{dept}
-		</if>
+		
 		<if test="role>=0 ">
 			,role=#{role}
 		</if>
@@ -57,7 +56,7 @@
 
 	<!-- 获取登陆账户信息 -->
 	<select id="find" parameterType="User" resultType="User">
-		SELECT id,username,NAME,role,password, dept
+		SELECT id,username,NAME,role,password
 		FROM zj_user WHERE
 		id=#{id}
 		<if test="username!=null and username!='' ">
@@ -105,12 +104,12 @@
 		COUNT(look) AS look FROM zj_customer WHERE belongs=#{sign} and look=0
 	</select>-->
 	
-	<!-- 查询所有客户数目 -->
-	<select id="findAllCus" parameterType="User" resultType="int">
+	<!-- 查询所有客户数目<select id="findAllCus" parameterType="User" resultType="int">
 		SELECT
 		COUNT(id) FROM(SELECT COUNT(id) AS id FROM zj_customer WHERE
 		belongs=#{sign} GROUP BY id)aa
-	</select>
+	</select> -->
+	
 	<!-- 查询旗下顾客全部
 	
 	
@@ -152,7 +151,7 @@
 	<!-- 添加新用户 -->
 	<insert id="insertUser" parameterType="User">
 		insert into zj_user
-		(id,username,password,name,time,role,dept) values
-		(#{id},#{username},#{password},#{name},#{time},#{role},#{dept})
+		(id,username,password,name,time,role) values
+		(#{id},#{username},#{password},#{name},#{time},#{role})
 	</insert>
 </mapper>

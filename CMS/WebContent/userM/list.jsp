@@ -41,20 +41,19 @@
 											<div class="col-xs-12 col-sm-12">
 												检索:<input type="text" name="search" placeholder="用户名/姓名"
 													value="${us.search}" />
-												<c:if test="${loginU.role eq 1 }">&nbsp;职务 <select
+												&nbsp;职务 <select
 														name="role">
 														<option value="-1"
 															<c:if test="${us.role eq -1 }">selected="selected"</c:if>>全选</option>
 														<option value="0"
-															<c:if test="${us.role eq 0 }">selected="selected"</c:if>>普通员工</option>
+															<c:if test="${us.role eq 0 }">selected="selected"</c:if>>进货员</option>
 														<option value="2"
-															<c:if test="${us.role eq 2 }">selected="selected"</c:if>>部门主管</option>
+															<c:if test="${us.role eq 2 }">selected="selected"</c:if>>出货员</option>
 														<option value="1"
 															<c:if test="${us.role eq 1 }">selected="selected"</c:if>>部门经理</option>
-														<option value="3"
-															<c:if test="${us.role eq 3 }">selected="selected"</c:if>>回访专员</option>
+														
 													</select>
-												</c:if>
+												
 												&nbsp;
 												<button class="btn btn-primary search">
 													<i class="icon-cloud-upload bigger-110"></i> 查询
@@ -95,30 +94,30 @@
 													<div class="chanR" style="display: none">
 														<select class="ro">
 															<option value="0"
-																<c:if test="${li.role eq 0 }">selected="selected"</c:if>>部门员工</option>
+																<c:if test="${li.role eq 0 }">selected="selected"</c:if>>进货员</option>
 															<option value="1"
 																<c:if test="${li.role eq 1 }">selected="selected"</c:if>>部门经理</option>
 															<option value="2"
-																<c:if test="${li.role eq 2 }">selected="selected"</c:if>>部门主管</option>
-															<option value="3"
-																<c:if test="${li.role eq 3 }">selected="selected"</c:if>>回访专员</option>
+																<c:if test="${li.role eq 2 }">selected="selected"</c:if>>出货员</option>
+															<option value="-1"
+																<c:if test="${li.role eq -1 }">selected="selected"</c:if>>全选</option>
 														</select>
 													</div>
 													<div class="showR">
 														<c:if test="${li.role eq 0}">
 															<span
-																class="label label-success arrowed-in-right arrowed">部门员工</span>
+																class="label label-success arrowed-in-right arrowed">进货员</span>
 														</c:if>
 														<c:if test="${li.role eq 1}">
 															<span class="label label-danger arrowed-in-right arrowed">部门经理</span>
 														</c:if>
 														<c:if test="${li.role eq 2}">
 															<span
-																class="label label-warning arrowed-in-right arrowed">部门主管</span>
+																class="label label-warning arrowed-in-right arrowed">出货员</span>
 														</c:if>
-														<c:if test="${li.role eq 3}">
+														<c:if test="${li.role eq -1}">
 															<span
-																class="label label-info arrowed-in-right arrowed">回访专员</span>
+																class="label label-info arrowed-in-right arrowed">全选</span>
 														</c:if>
 													</div>
 												</td>
@@ -148,9 +147,10 @@
 											</tr>
 										</c:forEach>
 									</c:if>
-									<c:if test="${loginU.role ne  1 }">
+									<c:if test="${loginU.role !=1 }">
+									
 										<c:forEach items="${list}" var="li">
-											<c:if test="${loginU.sign eq li.sign }">
+											
 												<tr>
 													<td class="center"><label> <input
 															type="checkbox" class="ace" /> <span class="lbl"></span>
@@ -159,26 +159,29 @@
 													<td class="center username">${li.username}</td>
 													<td class="center"><c:if test="${li.role eq 0}">
 															<span
-																class="label label-success arrowed-in-right arrowed">部门员工</span>
-														</c:if> <c:if test="${li.role eq 2}">
+																class="label label-success arrowed-in-right arrowed">出货员</span>
+														</c:if> <c:if test="${li.role eq 1}">
 															<span
-																class="label label-warning arrowed-in-right arrowed">部门主管</span>
+																class="label label-warning arrowed-in-right arrowed">部门经理</span>
 														</c:if><c:if test="${li.role eq 3}">
 															<span
-																class="label label-info arrowed-in-right arrowed">回访专员</span>
+																class="label label-info arrowed-in-right arrowed">出货员</span>
 														</c:if></td>
 													<td class="center">${li.time}</td>
+													
 													<td class="center">
 														<div
 															class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															<c:if test="${loginU.id eq li.id}">
 															<a class="green updateUser"
 																href="userM/query.action?id=${li.id}"> <i
 																class="icon-pencil bigger-130"></i>
-															</a>
+															</a></c:if>
 														</div>
 													</td>
+													
 												</tr>
-											</c:if>
+											
 										</c:forEach>
 									</c:if>
 								</tbody>

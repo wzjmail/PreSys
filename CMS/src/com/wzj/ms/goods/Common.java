@@ -13,7 +13,7 @@ public class Common
   private String search = "";
   private String cfrom = "";
   private Integer project;
-  private int role;  private int prices;
+  private int role;  private double prices;
   public String getGoodsname() {
 	return goodsname;
 }
@@ -22,11 +22,11 @@ public void setGoodsname(String goodsname) {
 	this.goodsname = goodsname;
 }
 
-public int getPrices() {
+public double getPrices() {
 	return prices;
 }
 
-public void setPrices(int prices) {
+public void setPrices(double prices) {
 	this.prices = prices;
 }
 

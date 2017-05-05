@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="images/logo/plogo.png"
 	type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>米良后台管理系统</title>
+<title>Orign OMS</title>
 <!-- basic styles -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
@@ -49,16 +49,14 @@
 	<div class="navbar fixed navbar-fixed-top " id="navbar">
 		<div class="navbar-container" id="navbar-container">
 			<div style="height: 55px;" class="navbar-header pull-left">
-				<a class="ind"> <img style="height: 55px;"
-					src="images/logo/logo.png" />
-				</a>
+				<a class="ind"> </a>
 				<!-- /.brand -->
 			</div>
 			<!-- /.navbar-header -->
 			<div class="navbar-header pull-right" role="navigation"
 				style="position: absolute; right: 0px">
 				<ul class="nav ace-nav" style="height: 55px;">
-			<!-- 		<c:if test="${loginU.role eq 0 }">
+					<!-- 		<c:if test="${loginU.role eq 0 }">
 						<li class="grey"><a style="width: 80px;"
 							href="cusM/dayout.action" target="rightJsp"> <i
 								class="icon-tasks bigger-130" style="font-size: 20px"></i> <span
@@ -155,11 +153,10 @@
 								</li>
 							</ul></li>
 					</c:if>    -->
-					
+
 					<li class="light-blue"><a data-toggle="dropdown"
 						style="font-size: 20px; height: 55px; width: 170px" href="#"
-						class="dropdown-toggle"> <img class="nav-user-photo"
-							src="assets/avatars/user.jpg" /> <span class="user-info"
+						class="dropdown-toggle"> <span class="user-info"
 							style="font-size: 12px; position: relative; top: 15px"> <small>欢迎光临</small>
 								${loginU.name }
 						</span> <i class="icon-caret-down"></i>
@@ -242,95 +239,58 @@
 					</a>
 						<ul class="submenu">
 
-							<c:if test="${loginU.role eq 0 }">
-								<li class="menu-list"><a
-									href="orderM/list.action?belongs=-1&restatus=-1"
-									target="rightJsp"> <span class="menu-list"> </span>
+							<!-- <c:if test="${loginU.role eq 0 }"> -->
+							<li class="menu-list"><a
+								href="orderM/list.action?belongs=-1&restatus=-1"
+								target="rightJsp"> <span class="menu-list"> </span>
+							</a></li>
+							<!--  </c:if> -->
+							<c:if test="${loginU.role ne 0 }">
+								<li class="menu-list"><a href="orderM/list.action?type=-1"
+									target="rightJsp"> <span class="menu-list">出货单 </span>
 								</a></li>
 							</c:if>
-									
-							<li class="menu-list"><a
-								href="orderM/list.action?type=-1"  target="rightJsp">
-									<span class="menu-list">出货单 </span>
-							</a></li>
-							<li class="menu-list"><a
-								href="order2M/list.action"  target="rightJsp">
-									<span class="menu-list">进货单</span>
-							</a></li>
-							<%--<c:if test="${loginU.role eq 0 || loginU.role eq 1 }">       
-								<li class="menu-list"><a
-									href="logM/record.action?rate=-1&belongsname=0"
-									target="rightJsp"><span class="menu-list">跟踪记录 </span> </a></li>
+							<c:if test="${loginU.role ne 2 }">
+								<li class="menu-list"><a href="order2M/list.action"
+									target="rightJsp"> <span class="menu-list">进货单</span>
+								</a></li>
 							</c:if>
-							<c:if test="${loginU.role eq 3 ||loginU.role eq 1||loginU.role eq 0 }">
-								<li class="menu-list"><a href="visM/list.action?status=-1&belongs=-2"
-									target="rightJsp"><span class="menu-list">回访记录 </span> </a></li>
-							</c:if> --%>
+
 						</ul></li>
-						
-						<li><a href="#" class="dropdown-toggle"> <i
-								class="icon-cogs"></i> <span class="menu-text">商品信息  </span> <b
-								class="arrow icon-angle-down"></b>
-						</a>
-							<ul class="submenu">
-								<li class="menu-list"><a href="goodsM/list.action?role=-1"
-									target="rightJsp"> <span class="menu-list">商品管理 </span>
-								</a>
-								</li>
-								
-								<%--<li class="menu-list"><a href="userM/list.action?role=-1"
-									target="rightJsp"> <span class="menu-list">零食/茶酒 </span>
-								</a>
-								
-								</li>
-								<li class="menu-list"><a href="userM/list.action?role=-1"
-									target="rightJsp"> <span class="menu-list">厨具/收纳 </span>
-								</a>
-								
-								</li>
-								<li class="menu-list"><a href="userM/list.action?role=-1"
-									target="rightJsp"> <span class="menu-list">服装 </span>
-								</a>
-								
-								</li>--%>
-								
-								
-							</ul>
-							</li>
-							
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-cogs"></i> <span class="menu-text">商品信息 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+						<ul class="submenu">
+							<li class="menu-list"><a href="goodsM/list.action?role=-1"
+								target="rightJsp"> <span class="menu-list">商品管理 </span>
+							</a></li>
+
+
+
+
+						</ul></li>
+
 					<li><a href="#" class="dropdown-toggle"> <i
 							class="icon-group"></i> <span class="menu-text">合作商信息 </span> <b
 							class="arrow icon-angle-down"></b>
 					</a>
 						<ul class="submenu">
 
-							
-							<li class="menu-list"><a
-								href="cusM/list.action?role=-1" target="rightJsp">
-									<span class="menu-list">顾客管理 </span>
-							</a></li>
-							<li class="menu-list"><a
-								href="provM/list.action?role=-1"target="rightJsp">
-									<span class="menu-list">供应商管理</span>
-							</a></li>
-							
+							<c:if test="${loginU.role eq 0||loginU.role eq 1 }">
+								<li class="menu-list"><a href="cusM/list.action?role=-1"
+									target="rightJsp"> <span class="menu-list">顾客管理 </span>
+								</a></li>
+							</c:if>
+							<c:if test="${loginU.role eq 2||loginU.role eq 1  }">
+								<li class="menu-list"><a href="provM/list.action?role=-1"
+									target="rightJsp"> <span class="menu-list">供应商管理</span>
+								</a></li>
+							</c:if>
+
 						</ul></li>
-						
 					
-						
-						
-				
-						
-							
-							
-							
-							
-							
-							
-							
-							
-							
-					<c:if test="${loginU.role eq 1 }">
 						<li><a href="#" class="dropdown-toggle"> <i
 								class="icon-cogs"></i> <span class="menu-text">用户管理 </span> <b
 								class="arrow icon-angle-down"></b>
@@ -338,12 +298,18 @@
 							<ul class="submenu">
 								<li class="menu-list"><a href="userM/list.action?role=-1"
 									target="rightJsp"> <span class="menu-list">员工信息 </span>
-								</a>
-								
-								</li>
+								</a></li>
 							</ul></li>
-					</c:if>
 
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-cogs"></i> <span class="menu-text">政策与信息 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+						<ul class="submenu">
+							<li class="menu-list"><a href="messageM/list.action"
+								target="rightJsp"> <span class="menu-list">公告信息 </span>
+							</a></li>
+						</ul></li>
 
 				</ul>
 				<!-- -->
@@ -377,8 +343,8 @@
 	<script type="text/javascript">
 		if ("ontouchend" in document)
 			document
-					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
-							+ "<" + "script>");
+					.write("_$tag_______________________________________________"
+							+ "_$tag________");
 	</script>
 
 	<script src="assets/js/bootstrap.min.js"></script>
