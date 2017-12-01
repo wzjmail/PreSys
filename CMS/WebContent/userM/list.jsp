@@ -159,11 +159,11 @@
 													<td class="center username">${li.username}</td>
 													<td class="center"><c:if test="${li.role eq 0}">
 															<span
-																class="label label-success arrowed-in-right arrowed">出货员</span>
+																class="label label-success arrowed-in-right arrowed">进货员</span>
 														</c:if> <c:if test="${li.role eq 1}">
 															<span
 																class="label label-warning arrowed-in-right arrowed">部门经理</span>
-														</c:if><c:if test="${li.role eq 3}">
+														</c:if><c:if test="${li.role eq 2}">
 															<span
 																class="label label-info arrowed-in-right arrowed">出货员</span>
 														</c:if></td>
